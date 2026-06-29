@@ -1,311 +1,170 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>周海鹏 Roc</title>
+<title>周海鹏 Roc - 个人主页</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
 <style>
-:root {
-  --bg: #f5f2ed;
-  --surface: #ffffff;
-  --border: #e5dfd8;
-  --text: #1a1816;
-  --text-secondary: #9b938b;
-  --text-muted: #c5bdb5;
-  --accent: #9b7b5e;
-  --accent-hover: #7f6349;
-  --tag-dot: #d4cdc5;
-  --theme-btn-bg: #e5dfd8;
-  --theme-btn-text: #5a5248;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-[data-theme="dark"] {
-  --bg: #161412;
-  --surface: #1e1a16;
-  --border: #2d2823;
-  --text: #e8e0d6;
-  --text-secondary: #90857a;
-  --text-muted: #4a433c;
-  --accent: #c4a882;
-  --accent-hover: #d4bc9c;
-  --tag-dot: #3d3630;
-  --theme-btn-bg: #2d2823;
-  --theme-btn-text: #90857a;
-}
-
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { font-size: 16px; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.4s ease, color 0.4s ease;
-  padding: 24px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.container {
-  max-width: 520px;
-  width: 100%;
-  background: var(--surface);
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  padding: 56px 48px 44px;
-  position: relative;
-  transition: background 0.4s ease, border-color 0.4s ease;
-}
-
-.theme-switch {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  cursor: pointer;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.25s, transform 0.25s;
-}
-
-.theme-switch:hover {
-  color: var(--accent);
-  transform: rotate(30deg);
-}
-
-.avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 28px;
   overflow: hidden;
-  transition: border-color 0.3s;
-  user-select: none;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: linear-gradient(to bottom, #0a4d68 0%, #088395 50%, #05bfdb 100%);
 }
 
-.avatar img {
+/* 海洋容器 */
+.ocean {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.name-group { margin-bottom: 10px; }
-
-.name-zh {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  line-height: 1.2;
-  color: var(--text);
+/* 波浪基础样式 */
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
 }
 
-.name-en {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-top: 2px;
+/* 第一层波浪 - 最慢，最深 */
+.wave1 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C300,110 600,10 900,60 C1050,85 1125,100 1200,60 L1200,120 L0,120 Z' fill='%230a4d68' fill-opacity='0.3'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  animation: wave-animation 25s linear infinite;
+  bottom: -10px;
 }
 
-.tagline {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: 36px;
-  max-width: 380px;
+/* 第二层波浪 - 中速 */
+.wave2 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,80 C300,20 600,120 900,70 C1050,45 1125,30 1200,70 L1200,120 L0,120 Z' fill='%23088395' fill-opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  animation: wave-animation 18s linear infinite;
+  bottom: -20px;
 }
 
-.separator {
+/* 第三层波浪 - 较快 */
+.wave3 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C300,90 600,0 900,50 C1050,75 1125,90 1200,50 L1200,120 L0,120 Z' fill='%2305bfdb' fill-opacity='0.3'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  animation: wave-animation 12s linear infinite;
+  bottom: -30px;
+}
+
+/* 第四层波浪 - 最快，最浅 */
+.wave4 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,70 C300,10 600,100 900,60 C1050,40 1125,25 1200,60 L1200,120 L0,120 Z' fill='%2337d5d6' fill-opacity='0.25'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  animation: wave-animation 8s linear infinite;
+  bottom: -40px;
+}
+
+/* 波浪动画 - 水平移动 */
+@keyframes wave-animation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 添加波光粼粼效果 */
+.sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 1px;
-  background: var(--border);
-  margin-bottom: 36px;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 2%),
+    radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 3%),
+    radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.12) 0%, transparent 2%),
+    radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.09) 0%, transparent 2.5%),
+    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 2%),
+    radial-gradient(circle at 45% 60%, rgba(255, 255, 255, 0.07) 0%, transparent 3%);
+  animation: sparkle 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.info-block { margin-bottom: 28px; }
-
-.info-block:last-of-type { margin-bottom: 0; }
-
-.info-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 10px;
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 16px;
-}
-
-.skill-item {
-  font-size: 14px;
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.skill-item::before {
-  content: '';
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--tag-dot);
-  flex-shrink: 0;
-}
-
-.social-row {
-  display: flex;
-  gap: 12px;
-}
-
-.social-link {
+/* 内容区域（为步骤2准备） */
+.content {
+  position: relative;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: all 0.25s;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
 }
 
-.social-link svg {
-  width: 18px;
-  height: 18px;
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .wave {
+    width: 300%;
+    background-size: 33.33% 100%;
+  }
+  
+  @keyframes wave-animation {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.33%);
+    }
+  }
 }
 
-.social-link:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(155, 123, 94, 0.06);
-}
-
-.footer {
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.footer-extra {
-  display: flex;
-  gap: 16px;
-}
-
-.footer-extra a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.footer-extra a:hover {
-  color: var(--accent);
-}
-
-@media (max-width: 480px) {
-  .container { padding: 40px 28px 32px; }
-  .name-zh { font-size: 26px; }
-  .avatar { width: 60px; height: 60px; font-size: 24px; }
+/* GPU 加速优化 */
+.wave,
+.sparkles {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <button class="theme-switch" id="themeToggle" aria-label="切换主题">☀️</button>
-
-  <div class="avatar" id="avatar">R</div>
-
-  <div class="name-group">
-    <div class="name-zh">周海鹏</div>
-    <div class="name-en">Roc</div>
-  </div>
-
-  <p class="tagline">我是一个还在人海中沉浮的哲学家</p>
-
-  <div class="separator"></div>
-
-  <div class="info-block">
-    <div class="info-label">技能</div>
-    <div class="skills-list">
-      <span class="skill-item">Vibe Coding</span>
-      <span class="skill-item">Prompt Engineering</span>
-      <span class="skill-item">哲学思考</span>
-      <span class="skill-item">AI 协作</span>
-    </div>
-  </div>
-
-  <div class="info-block">
-    <div class="info-label">社交</div>
-    <div class="social-row">
-      <a class="social-link" href="https://github.com/zhoutom40-star" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <div class="footer">
-    <span>&copy; 2026 周海鹏</span>
-    <div class="footer-extra">
-      <a href="mailto:zhoutom40-star@github.com">Email</a>
-    </div>
-  </div>
+<!-- 海洋背景 -->
+<div class="ocean">
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+  <div class="wave wave3"></div>
+  <div class="wave wave4"></div>
+  <div class="sparkles"></div>
 </div>
 
-<script>
-const toggle = document.getElementById('themeToggle');
-const html = document.documentElement;
+<!-- 内容容器（步骤2会在这里添加卡片） -->
+<div class="content">
+  <!-- 个人信息卡片将在步骤2添加到这里 -->
+</div>
 
-const saved = localStorage.getItem('theme') || 'light';
-html.setAttribute('data-theme', saved);
-toggle.textContent = saved === 'light' ? '☀️' : '🌙';
-
-toggle.addEventListener('click', () => {
-  const cur = html.getAttribute('data-theme');
-  const next = cur === 'light' ? 'dark' : 'light';
-  html.setAttribute('data-theme', next);
-  toggle.textContent = next === 'light' ? '☀️' : '🌙';
-  localStorage.setItem('theme', next);
-});
-
-const avatarEl = document.getElementById('avatar');
-const img = document.createElement('img');
-img.alt = 'avatar';
-img.src = 'avatar.jpg';
-img.onerror = () => img.remove();
-avatarEl.prepend(img);
-</script>
 </body>
 </html>
