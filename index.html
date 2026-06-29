@@ -148,6 +148,272 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* ========== 个人信息卡片 ========== */
+.card {
+  max-width: 560px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 48px 40px 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  animation: card-enter 1s ease-out;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 头像 */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.avatar:hover {
+  transform: scale(1.08) rotate(5deg);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 姓名组 */
+.name-group {
+  text-align: center;
+  margin-bottom: 12px;
+  animation: fade-in 1s ease-out 0.2s both;
+}
+
+.name-zh {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.name-en {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  transition: letter-spacing 0.3s;
+}
+
+.name-en:hover {
+  letter-spacing: 6px;
+}
+
+/* 标语 */
+.tagline {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin-bottom: 32px;
+  animation: fade-in 1s ease-out 0.4s both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 分隔线 */
+.separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  margin: 32px 0;
+}
+
+/* 关于我区域 */
+.about-section {
+  margin-bottom: 32px;
+  animation: fade-in 1s ease-out 0.6s both;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.about-text {
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: justify;
+  text-indent: 2em;
+  padding: 0 8px;
+}
+
+/* 技能标签 */
+.skills-section {
+  margin-bottom: 32px;
+  animation: fade-in 1s ease-out 0.8s both;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skill-tag {
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: default;
+}
+
+.skill-tag:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* 社交链接 */
+.social-section {
+  animation: fade-in 1s ease-out 1s both;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.social-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.social-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* 复制提示 */
+.copy-tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+
+.copy-tooltip.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  bottom: -35px;
+}
+
+/* Footer */
+.footer {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* 响应式优化 */
+@media (max-width: 640px) {
+  .card {
+    padding: 36px 28px 32px;
+    max-width: 90%;
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .name-zh {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  
+  .about-text {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  
+  .skill-tag {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+}
 </style>
 </head>
 <body>
@@ -161,10 +427,100 @@ body {
   <div class="sparkles"></div>
 </div>
 
-<!-- 内容容器（步骤2会在这里添加卡片） -->
+<!-- 内容容器 -->
 <div class="content">
-  <!-- 个人信息卡片将在步骤2添加到这里 -->
+  <div class="card">
+    <!-- 头像 -->
+    <div class="avatar">
+      <img src="avatar.jpg" alt="周海鹏头像" id="avatarImg">
+    </div>
+    
+    <!-- 姓名 -->
+    <div class="name-group">
+      <div class="name-zh">周海鹏</div>
+      <div class="name-en">Roc</div>
+    </div>
+    
+    <!-- 标语 -->
+    <p class="tagline">我是一个还在人海中沉浮的哲学家</p>
+    
+    <div class="separator"></div>
+    
+    <!-- 关于我 -->
+    <div class="about-section">
+      <div class="section-title">关于我</div>
+      <p class="about-text">我是周海鹏。我始终认同世界会奖励善连接、能独处的两类人。对外乐于与人交流，主动把握机遇拓展视野；对内偏爱安静自省，在喧嚣中聆听内心声音。日常做事踏实有分寸，擅长平衡社交与自我沉淀。常怀庄子"独与天地精神往来"的心境，向外奔赴机遇，向内寻得方向，在热闹与独处间稳步成长。</p>
+    </div>
+    
+    <!-- 技能 -->
+    <div class="skills-section">
+      <div class="section-title">技能</div>
+      <div class="skills-list">
+        <span class="skill-tag">Vibe Coding</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">哲学思考</span>
+        <span class="skill-tag">AI 协作</span>
+      </div>
+    </div>
+    
+    <!-- 社交链接 -->
+    <div class="social-section">
+      <div class="section-title">联系方式</div>
+      <div class="social-links">
+        <!-- GitHub -->
+        <a class="social-btn" href="https://github.com/zhoutom40-star" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/>
+          </svg>
+        </a>
+        
+        <!-- Email -->
+        <button class="social-btn" id="emailBtn" aria-label="复制邮箱">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span class="copy-tooltip" id="copyTooltip">已复制！</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      &copy; 2026 周海鹏 · 在人海中沉浮
+    </div>
+  </div>
 </div>
+
+<script>
+// 复制邮箱功能
+const emailBtn = document.getElementById('emailBtn');
+const tooltip = document.getElementById('copyTooltip');
+const email = 'zhoutom40@gmail.com';
+
+emailBtn.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(email);
+    tooltip.classList.add('show');
+    setTimeout(() => {
+      tooltip.classList.remove('show');
+    }, 2000);
+  } catch (err) {
+    console.error('复制失败:', err);
+  }
+});
+
+// 头像加载失败时显示首字母
+const avatarImg = document.getElementById('avatarImg');
+avatarImg.onerror = () => {
+  avatarImg.style.display = 'none';
+  const avatar = avatarImg.parentElement;
+  avatar.style.fontSize = '36px';
+  avatar.style.fontWeight = '600';
+  avatar.style.color = 'rgba(255,255,255,0.9)';
+  avatar.textContent = 'R';
+};
+</script>
 
 </body>
 </html>
